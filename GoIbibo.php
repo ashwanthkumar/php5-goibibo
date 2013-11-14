@@ -2,7 +2,7 @@
 
 define("API_BASE_URL", "https://developer.goibibo.com");
 define("FORMAT", "json");
-define("DEBUG", TRUE);
+define("DEBUG", FALSE);
 
 define("CLASS_E", "E");
 define("CLASS_B", "B");
