@@ -47,7 +47,7 @@ class GoIbibo {
 			$params['children'] = $nrOfChildren;
 			$params['infants'] = $nrOfInfants;
 
-			return $this->makeRequest("/api/search", $params);
+			return $this->makeRequest("/api/search/", $params);
 	}
 
 	function getMinimumFare($sourceInIATA, $destinationInIATA, 
@@ -63,7 +63,7 @@ class GoIbibo {
 		$params['sdate'] = $startDate;
 		if(!is_null($endDate)) $params['edate'] = $endDate;
 		$params['class'] = $class;
-		return $this->makeRequest("/api/stats/minfare", $params);
+		return $this->makeRequest("/api/stats/minfare/", $params);
 	}
 
 	function searchBuses($source, $destination, $dateOfOnwardTravel, 
@@ -79,7 +79,7 @@ class GoIbibo {
 	}
 
 	function getBusSeatLayout($busId) {
-		return $this->makeRequest("/api/bus/seatmap", array('skey' => $busId));
+		return $this->makeRequest("/api/bus/seatmap/", array('skey' => $busId));
 	}
 
 	private function makeRequest($end_point, $params = array()) {
@@ -100,7 +100,6 @@ class GoIbibo {
         */
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);        
         if(DEBUG) curl_setopt($curl, CURLOPT_VERBOSE, TRUE);
 
 
