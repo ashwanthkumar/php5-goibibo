@@ -75,7 +75,7 @@ class GoIbibo {
 			$params['dateofdeparture'] = $dateOfOnwardTravel;
 			if(!is_null($dateOfArrival)) $params['dateofarrival'] = $dateOfArrival;
 
-			return $this->makeRequest("/api/bus/search", $params);
+			return $this->makeRequest("/api/bus/search/", $params);
 	}
 
 	function getBusSeatLayout($busId) {
@@ -90,7 +90,7 @@ class GoIbibo {
 	    $params['format'] = FORMAT;
 	    $request_url = API_BASE_URL . $end_point . "?" . http_build_query($params);
 
-	    debug("Request URL: " . $request_url);
+	    $this->debug("Request URL: " . $request_url);
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $request_url);
@@ -106,12 +106,13 @@ class GoIbibo {
         $response_from_server = curl_exec($curl);
         return json_decode($response_from_server);
 	}
-
-}
-
-
-function debug($message) {
-	if(DEBUG) {
-		echo "[DEBUG] " . date("r") . " => " . $message . "\n";
+	
+	function debug($message) {
+		if(DEBUG) {
+			echo "[DEBUG] " . date("r") . " => " . $message . "\n";
+		}
 	}
+
 }
+
+
